@@ -1,3 +1,17 @@
+# Copyright 2023-2024 Herman Ye@Auromix
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at:
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+# either express or implied. See the License for the specific
+# language governing permissions and limitations under the License.
+
 """
 AuroJoystickROSController is a ROS node that enables control of a robot using an Auro joystick.
 
@@ -26,8 +40,8 @@ from auro_joystick import AuroJoystick
 
 CMD_VEL_TOPIC = "/turtle1/cmd_vel"
 RESET_SERVICE = "/reset"
-MAX_LINEAR_VELOCITY = 1.0
-MAX_ANGULAR_VELOCITY = 1.0
+MAX_LINEAR_VELOCITY = 2.0
+MAX_ANGULAR_VELOCITY = 2.0
 MAX_STICK_VALUE = 32767
 MAX_TRIGGER_VALUE = 255
 
@@ -70,8 +84,6 @@ class AuroJoystickROSController:
         # Control linear movement with the left joystick
         self.cmd.linear.x = x / MAX_STICK_VALUE * MAX_LINEAR_VELOCITY
         self.cmd.linear.y = y / MAX_STICK_VALUE * MAX_LINEAR_VELOCITY
-        self.cmd.linear.z = 0
-        self.cmd.angular.z = 0  # Reset rotation
         self.cmd_vel_pub.publish(self.cmd)
 
     def on_right_stick_moved(self, x, y):
