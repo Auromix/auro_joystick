@@ -1,6 +1,6 @@
 [![Official](https://img.shields.io/badge/Official%20-Auromix-blue?style=flat&logo=world&logoColor=white)](https://github.com/Auromix) &nbsp;
 [![Ubuntu](https://img.shields.io/badge/Ubuntu-20.04-green)](https://ubuntu.com/) &nbsp;
-[![LICENSE](https://img.shields.io/badge/license-Apache--2.0-informational)](https://github.com/Auromix/auro_joystick/blob/ros2-humble/LICENSE) &nbsp;
+[![LICENSE](https://img.shields.io/badge/license-Apache--2.0-informational)](https://github.com/Auromix/auro_joystick/blob/main/LICENSE) &nbsp;
 [![GitHub Repo stars](https://img.shields.io/github/stars/Auromix/auro_joystick?style=social)](https://github.com/Auromix/auro_joystick/stargazers) &nbsp;
 [![Twitter Follow](https://img.shields.io/twitter/follow/Hermanye233?style=social)](https://twitter.com/Hermanye233) &nbsp;
 
