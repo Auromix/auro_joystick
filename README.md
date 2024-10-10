@@ -8,6 +8,8 @@
 
 Auro Joystick is a Python library designed for interfacing with joystick devices in robotics applications, offering robust support for ROS to facilitate easy integration.
 
+![Joystick ROS Control](docs/images/ros_control.gif)
+
 ## 🚀 Features
 
 - **Joystick Detection:** Automatically identifies supported joystick devices.
@@ -70,6 +72,37 @@ rosrun turtlesim turtlesim_node
 # [Terminal 3]
 # Run the example
 python examples/control_ros_turtlesim.py
+```
+
+### Minimal Code Example
+
+This example will call a function when the `A` button is pressed.
+
+```python
+import time
+from auro_joystick import AuroJoystick
+
+
+# Your callback function
+def on_button_a_pressed():
+    print("Button A pressed!")
+
+
+# Init the joystick
+joystick = AuroJoystick()
+# Register the function for button A
+joystick.register_event_handler(on_button_a_pressed, "button_a_pressed")
+
+# Start the joystick
+joystick.start()
+
+# Your loop
+while True:
+    time.sleep(0.05)
+```
+
+```bash
+python examples/minimal.py
 ```
 
 ## 🧑‍💻 Documentation
