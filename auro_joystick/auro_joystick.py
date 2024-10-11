@@ -122,16 +122,18 @@ class AuroJoystick:
                     self._pressed_keys.add("button_start")
                     self._execute_event_handler("button_start_pressed")
                 elif event.value == evdev.events.KeyEvent.key_up:
-                    self._pressed_keys.remove("button_start")
-                    self._execute_event_handler("button_start_released")
+                    if "button_start" in self._pressed_keys:
+                        self._pressed_keys.remove("button_start")
+                        self._execute_event_handler("button_start_released")
             # Back
             if event.code == 314:
                 if event.value == evdev.events.KeyEvent.key_down:
                     self._pressed_keys.add("button_back")
                     self._execute_event_handler("button_back_pressed")
                 elif event.value == evdev.events.KeyEvent.key_up:
-                    self._pressed_keys.remove("button_back")
-                    self._execute_event_handler("button_back_released")
+                    if "button_back" in self._pressed_keys:
+                        self._pressed_keys.remove("button_back")
+                        self._execute_event_handler("button_back_released")
 
             # Left bumper
             elif event.code == 310:
@@ -139,8 +141,9 @@ class AuroJoystick:
                     self._pressed_keys.add("button_left_bumper")
                     self._execute_event_handler("button_left_bumper_pressed")
                 elif event.value == evdev.events.KeyEvent.key_up:
-                    self._pressed_keys.remove("button_left_bumper")
-                    self._execute_event_handler("button_left_bumper_released")
+                    if "button_left_bumper" in self._pressed_keys:
+                        self._pressed_keys.remove("button_left_bumper")
+                        self._execute_event_handler("button_left_bumper_released")
 
             # Right bumper
             elif event.code == 311:
@@ -148,8 +151,9 @@ class AuroJoystick:
                     self._pressed_keys.add("button_right_bumper")
                     self._execute_event_handler("button_right_bumper_pressed")
                 elif event.value == evdev.events.KeyEvent.key_up:
-                    self._pressed_keys.remove("button_right_bumper")
-                    self._execute_event_handler("button_right_bumper_released")
+                    if "button_right_bumper" in self._pressed_keys:
+                        self._pressed_keys.remove("button_right_bumper")
+                        self._execute_event_handler("button_right_bumper_released")
 
             # Left stick
             if event.code == 317:
@@ -157,8 +161,10 @@ class AuroJoystick:
                     self._pressed_keys.add("button_left_stick")
                     self._execute_event_handler("button_left_stick_pressed")
                 elif event.value == evdev.events.KeyEvent.key_up:
-                    self._pressed_keys.remove("button_left_stick")
-                    self._execute_event_handler("button_left_stick_released")
+                    if "button_left_stick" in self._pressed_keys:
+
+                        self._pressed_keys.remove("button_left_stick")
+                        self._execute_event_handler("button_left_stick_released")
 
             # Right stick
             if event.code == 318:
@@ -166,8 +172,9 @@ class AuroJoystick:
                     self._pressed_keys.add("button_right_stick")
                     self._execute_event_handler("button_right_stick_pressed")
                 elif event.value == evdev.events.KeyEvent.key_up:
-                    self._pressed_keys.remove("button_right_stick")
-                    self._execute_event_handler("button_right_stick_released")
+                    if "button_right_stick" in self._pressed_keys:
+                        self._pressed_keys.remove("button_right_stick")
+                        self._execute_event_handler("button_right_stick_released")
 
             # A
             if event.code == 304:
@@ -176,8 +183,9 @@ class AuroJoystick:
                     self._execute_event_handler("button_a_pressed")
 
                 elif event.value == evdev.events.KeyEvent.key_up:
-                    self._pressed_keys.remove("button_a")
-                    self._execute_event_handler("button_a_released")
+                    if "button_a" in self._pressed_keys:
+                        self._pressed_keys.remove("button_a")
+                        self._execute_event_handler("button_a_released")
 
             # B
             if event.code == 305:
@@ -185,8 +193,9 @@ class AuroJoystick:
                     self._pressed_keys.add("button_b")
                     self._execute_event_handler("button_b_pressed")
                 elif event.value == evdev.events.KeyEvent.key_up:
-                    self._pressed_keys.remove("button_b")
-                    self._execute_event_handler("button_b_released")
+                    if "button_b" in self._pressed_keys:
+                        self._pressed_keys.remove("button_b")
+                        self._execute_event_handler("button_b_released")
 
             # X
             if event.code == 307:
@@ -194,8 +203,9 @@ class AuroJoystick:
                     self._pressed_keys.add("button_x")
                     self._execute_event_handler("button_x_pressed")
                 elif event.value == evdev.events.KeyEvent.key_up:
-                    self._pressed_keys.remove("button_x")
-                    self._execute_event_handler("button_x_released")
+                    if "button_x" in self._pressed_keys:
+                        self._pressed_keys.remove("button_x")
+                        self._execute_event_handler("button_x_released")
 
             # Y
             if event.code == 308:
@@ -203,8 +213,9 @@ class AuroJoystick:
                     self._pressed_keys.add("button_y")
                     self._execute_event_handler("button_y_pressed")
                 elif event.value == evdev.events.KeyEvent.key_up:
-                    self._pressed_keys.remove("button_y")
-                    self._execute_event_handler("button_y_released")
+                    if "button_y" in self._pressed_keys:
+                        self._pressed_keys.remove("button_y")
+                        self._execute_event_handler("button_y_released")
 
         # Absolute axis events
         elif event.type == evdev.ecodes.EV_ABS:
@@ -249,11 +260,12 @@ class AuroJoystick:
             # Left trigger
             elif event.code == 2:
                 if event.value == 0:
-                    self._pressed_keys.remove("left_trigger")
-                    self.left_trigger_value = event.value
-                    self._execute_event_handler(
-                        "left_trigger_released", self.left_trigger_value
-                    )
+                    if "left_trigger" in self._pressed_keys:
+                        self._pressed_keys.remove("left_trigger")
+                        self.left_trigger_value = event.value
+                        self._execute_event_handler(
+                            "left_trigger_released", self.left_trigger_value
+                        )
                 elif event.value > 0:
                     self._pressed_keys.add("left_trigger")
                     self.left_trigger_value = event.value
@@ -266,11 +278,13 @@ class AuroJoystick:
             # Right trigger
             elif event.code == 5:
                 if event.value == 0:
-                    self._pressed_keys.remove("right_trigger")
-                    self.right_trigger_value = event.value
-                    self._execute_event_handler(
-                        "right_trigger_released", self.right_trigger_value
-                    )
+                    if "right_trigger" in self._pressed_keys:
+
+                        self._pressed_keys.remove("right_trigger")
+                        self.right_trigger_value = event.value
+                        self._execute_event_handler(
+                            "right_trigger_released", self.right_trigger_value
+                        )
                 elif event.value > 0:
                     self._pressed_keys.add("right_trigger")
                     self.right_trigger_value = event.value
