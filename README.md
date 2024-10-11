@@ -111,6 +111,77 @@ For comprehensive documentation, please refer to the comments within the source 
 
 ## 🙋 Troubleshooting
 
+### Joystick Device Not Found
+
+```python
+ValueError: Joystick device not found
+```
+
+<details> <summary> Click here to see the solution </summary>
+It means that the system couldn't find your joystick.
+
+- Step 1: How AuroJoystick Finds Devices
+
+    AuroJoystick automatically searches for devices matching certain keywords, like `["pad", "X-Box", "360"]`.
+
+- Step 2: Manual Device Path Setup
+
+    If the joystick isn’t found automatically, you can manually specify the device path.
+
+    ```bash
+    # Install input-utils
+    sudo apt-get install input-utils
+    # List input devices
+    sudo lsinput
+    ```
+
+- Step 3: Find the Joystick Device
+
+   Look for a device that looks like this:
+
+   ```bash
+   /dev/input/event17
+      bustype : BUS_USB
+      vendor  : 0x45e
+      product : 0x28e
+      version : 256
+      name    : "Microsoft X-Box 360 pad"
+      phys    : "usb-0000:00:14.0-6.4/input0"
+   ```
+
+- Step 4: Use the Device Path
+
+    In your code, specify the path:
+
+    ```python
+    joystick = AuroJoystick(device_path="/dev/input/event17")
+    ```
+
+</details>
+
+### Permission Denied for Input Device
+
+```bash
+PermissionError: [Errno 13] Permission denied: '/dev/input/event18'
+```
+
+<details> <summary> Click here to see the solution </summary>
+This error means the program does not have the necessary permissions to access the device.
+
+- Step 1: Grant Temporary Permissions
+
+    To give your program temporary access, you can change the permissions of the device using the `chmod` command:
+
+    ```bash
+    sudo chmod 777 /dev/input/event18
+    ```
+
+    This grants read, write, and execute permissions for all users. Note that this is temporary and will be reset after a reboot.
+
+    This ensures your joystick device is accessible every time it's plugged in.
+
+</details>
+
 If you encounter any issues or have questions regarding this package, please contact the maintainers:
 
 - Herman Ye @ Auromix (Email: <hermanye233@icloud.com>)
